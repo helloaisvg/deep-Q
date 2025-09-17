@@ -1,0 +1,24 @@
+env_id: LunarLander-v2
+seed: 42
+total_steps: 200000
+start_learning: 10000
+batch_size: 64
+buffer_size: 100000
+use_per: true
+per_alpha: 0.6
+per_beta: 0.4
+gamma: 0.99
+learning_rate: 0.001
+double_dqn: true
+dueling: true
+target_update_period: 1000
+target_update_tau: 1.0
+epsilon:
+  start: 1.0
+  end: 0.05
+  decay_steps: 100000
+hidden_layers: [256, 256]
+logdir: runs
+run_name: default
+
+
