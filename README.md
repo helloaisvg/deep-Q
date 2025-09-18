@@ -34,6 +34,17 @@ python train.py --config configs/default.yaml
 tensorboard --logdir runs
 ```
 
+评估与曲线对比：
+
+```bash
+# 评估已保存模型
+python eval.py eval --env LunarLander-v2 --model path/to/saved_model_dir --episodes 20 --out eval.json
+
+# 对比不同实验曲线（训练时自动在runs/<env>_<run_name>/episode_rewards.csv记录）
+python eval.py compare --logs runs/LunarLander-v2_default/episode_rewards.csv runs/CartPole-v1_cartpole/episode_rewards.csv \
+  --labels LunarLander CartPole --out_png compare.png
+```
+
 ## 结果
 - 在<2000个episode内可解决`LunarLander-v2`（硬件/随机种子相关）
 - 典型运行时间: ~10-15分钟（CPU）

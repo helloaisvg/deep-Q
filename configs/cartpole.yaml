@@ -1,0 +1,24 @@
+env_id: CartPole-v1
+seed: 42
+total_steps: 100000
+start_learning: 1000
+batch_size: 64
+buffer_size: 50000
+use_per: true
+per_alpha: 0.6
+per_beta: 0.4
+gamma: 0.99
+learning_rate: 0.001
+double_dqn: true
+dueling: true
+target_update_period: 500
+target_update_tau: 1.0
+epsilon:
+  start: 1.0
+  end: 0.05
+  decay_steps: 50000
+hidden_layers: [128, 128]
+logdir: runs
+run_name: cartpole
+
+

@@ -77,6 +77,10 @@ def train(config: dict) -> None:
 
     summary_dir = os.path.join(logdir, f"{env_id}_{run_name}")
     writer = tf.summary.create_file_writer(summary_dir)
+    csv_path = os.path.join(summary_dir, "episode_rewards.csv")
+    os.makedirs(summary_dir, exist_ok=True)
+    with open(csv_path, "w", encoding="utf-8") as f:
+        f.write("step,episode_reward\n")
 
     state, _ = env.reset()
     episode_reward = 0.0
@@ -97,6 +101,8 @@ def train(config: dict) -> None:
             with writer.as_default():
                 tf.summary.scalar("episode_reward", episode_reward, step=step)
                 tf.summary.scalar("episode_length", episode_len, step=step)
+            with open(csv_path, "a", encoding="utf-8") as f:
+                f.write(f"{step},{episode_reward}\n")
             state, _ = env.reset()
             episode_reward = 0.0
             episode_len = 0
